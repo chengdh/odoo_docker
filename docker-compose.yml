@@ -1,60 +1,23 @@
-# Odoo server itself
-app:
-    image: yajo/odoo:10.0
-    # Allow colorized output
-    # tty: true
-    environment:
-        # Default values (you **must** change ADMIN_PASSWORD)
-        ADMIN_PASSWORD: admin
-        PGDATABASE: odoo
-        PGUSER: odoo
-        PGPASSWORD: odoo
-        PGDATABASE: odoo
-        PGHOST: db
-        ODOO_SERVER: odoo.py
-        UNACCENT: "True"
-        WDB_NO_BROWSER_AUTO_OPEN: "True"
-        WDB_SOCKET_SERVER: wdb
-        WDB_WEB_PORT: 1984
-        WDB_WEB_SERVER: localhost
-    # If you are going to use the HTTPS proxy for production,
-    # don't expose any ports
+version: '2'
+services:
+  web:
+    image: odoo:10.0
+    depends_on:
+      - db
     ports:
-        - "8069:8069"
-        - "8072:8072"
+      - "8069:8069"
     volumes:
-        # Assuming you have an addons subfolder in the working tree
-        - ./addons:/opt/odoo/extra-addons:ro,Z
-    volumes_from:
-        - appdata
-    links:
-        - db
-        # - wdb # Debugger, only for development
-    # This is the default command
-    command: launch
-
-# Hold separately the volumes of Odoo variable data
-appdata:
-    image: yajo/odoo:data
-
-# PostgreSQL server
-db:
-    image: postgres:9.2
+      - odoo-web-data:/var/lib/odoo
+      # - ./config:/etc/odoo
+      #- ./addons:/mnt/extra-addons
+  db:
+    image: postgres:9.4
     environment:
-        # You **must** change these
-        POSTGRES_USER: odoo
-        POSTGRES_PASSWORD: odoo
-    volumes_from:
-        - dbdata
-
-# PostgreSQL data files
-dbdata:
-    image: postgres:9.2
-    command: "true"
-
-# For development, add a debugger
-# wdb:
-#     image: yajo/wdb-server
-#     ports:
-#         - "1984:1984"
-
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+volumes:
+  odoo-web-data:
+  odoo-db-data:
