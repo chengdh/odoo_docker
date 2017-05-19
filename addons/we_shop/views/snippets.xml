@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="snippet_img_gallery" name="Image Gallery">
+      <section class="o_gallery o_spc-medium o_slideshow s_image_gallery" data-columns="3" style="height: 200px; overflow: hidden;">
+        <div class="container">
+          <div class="alert alert-info css_editable_mode_display">您可以通过'定制'菜单添加轮播图片</div>
+        </div>
+      </section>
+    </template>
+
+  </data>
+</odoo>

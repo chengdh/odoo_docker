@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop"> -->
+      <!--   <xpath expr="." position="inside"> -->
+        <!--     <link rel="stylesheet" href="/we_shop/static/css/jquery&#45;weui.css" /> -->
+        <!--     <link rel="stylesheet" href="/we_shop/static/css/style.css" /> -->
+        <!--     <script type="text/javascript" src="/we_shop/static/js/jquery&#45;weui.js"></script> -->
+        <!--   </xpath> -->
+      <!-- </template> -->
+
+
+    <!-- 轮播图 -->
+    <template id="img_gallery" inherit_id="website_sale.products" name="image gallery">
+      <xpath expr="//div[@id='products_grid_before']" position="before">
+        <div class="col-md-12" style="margin-bottom: 15px;">
+          <t t-call="we_shop.snippet_img_gallery" />
+        </div>
+        <div class="col-md-12" style="margin-bottom: 15px;">
+          <t t-call="we_shop.toolbox" />
+        </div>
+      </xpath>
+    </template>
+
+    <!--中间工具条-->
+    <template id="toolbox" name="toolbox">
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <a href="#" class="btn btn-default" role="button" style="border: none;">
+          <img src="/we_shop/static/img/icon-link3.png" class="img-circle" style="width: 52px;height: 52px;" />
+          <p>我要签到</p>
+        </a>
+        <a href="#" class="btn btn-default" role="button" style="border: none;">
+          <img src="/we_shop/static/img/icon-link2.png" class="img-circle" style="width: 52px;height: 52px;"  />
+          <p>积分兑换</p>
+        </a>
+        <a href="#" class="btn btn-default" role="button" style="border: none;">
+          <img src="/we_shop/static/img/icon-link5.png" class="img-circle" style="width: 52px;height: 52px;"  />
+          <p>增值服务</p>
+        </a>
+        <a href="#" class="btn btn-default" role="button" style="border: none;">
+          <img src="/we_shop/static/img/icon-link4.png" class="img-circle" style="width: 52px;height: 52px;"  />
+          <p>商家入驻</p>
+        </a>
+      </div>
+    </template>
+
+
+    <!--排序按钮-->
+    <template id="website_sale.sort"  inherit_id="website_sale.products" active="True" customize_show="True" name="Show Sort by">
+      <xpath expr="//div[@class='products_pager']/div/t[@t-call][last()]" position="after">
+        <t t-set="list_price_desc_label">价格 <i class="fa fa-arrow-up" aria-hidden="true"/></t>
+        <t t-set="list_price_asc_label">价格 <i class="fa fa-arrow-down" aria-hidden="true"/></t>
+        <t t-set="name_asc_label">名称</t>
+        <t t-set="website_sale_sortable" t-value="[
+          (list_price_desc_label, 'list_price desc'),
+          (list_price_asc_label, 'list_price asc'),
+          (name_asc_label, 'name asc')
+          ]"/>
+        <div class="dropdown btn-group dropdown_sorty_by">
+          <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+            <span>排序</span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li t-foreach="website_sale_sortable" t-as="sortby">
+              <a t-att-href="keep('/shop', order=sortby[1])">
+                <span t-raw="sortby[0]"/>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </xpath>
+    </template>
+
+    <!--自定义footer-->
+    <template id="website.footer_default" inherit_id="website.footer_custom" customize_show="True" name="Automatic Footer">
+      <xpath expr="//div[@id='footer']" position="replace">
+        <div id="footer" class="container hidden-print">
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <a href="/shop" class="btn btn-default" role="button">
+              <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="btn btn-default" role="button">
+              <i class="fa fa-clone fa-lg" aria-hidden="true"></i>
+            </a>
+            <a href="/shop/cart" class="btn btn-default" role="button">
+              <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="btn btn-default" role="button">
+              <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </xpath>
+    </template>
+    <template id="website.layout_footer_copyright" inherit_id="website.layout" name="Footer Copyright">
+      <xpath expr="//footer" position="inside">
+        <div></div>
+      </xpath>
+    </template>
+  </data>
+</odoo>
