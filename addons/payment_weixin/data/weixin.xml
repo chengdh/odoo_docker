@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="1">
-
         <record id="payment_acquirer_weixin" model="payment.acquirer">
             <field name="name">weixin</field>
             <field name="provider">weixin</field>
@@ -14,6 +13,7 @@
             <field name="weixin_mch_id">dummy</field>
             <field name="weixin_key">dummy</field>
             <field name="weixin_secret">dummy</field>
+            <field name="ip_address">127.0.0.1</field>
         </record>
 
     </data>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <record id="acquirer_form_weixin" model="ir.ui.view">
             <field name="name">acquirer.form.weixin</field>
             <field name="model">payment.acquirer</field>
@@ -9,15 +8,11 @@
             <field name="arch" type="xml">
                 <xpath expr='//group[@name="acquirer_base"]' position='after'>
                     <group attrs="{'invisible': [('provider', '!=', 'weixin')]}">
-                        <group>
-                            <group>
-                                <field name="weixin_appid"/>
-                                <field name="weixin_mch_id"/>
-                                <field name="weixin_key"/>
-                                <field name="weixin_secret"/>
-                                <field name="ip_address"/>
-                            </group>
-                        </group>
+                      <field name="weixin_appid"/>
+                      <field name="weixin_mch_id"/>
+                      <field name="weixin_key"/>
+                      <field name="weixin_secret"/>
+                      <field name="ip_address"/>
                     </group>
                 </xpath>
             </field>

@@ -32,6 +32,7 @@ class AcquirerWeixin(models.Model):
         providers.append(['weixin', 'weixin'])
         return providers
 
+    provider = fields.Selection(selection_add=[('weixin', 'weixin')])
     weixin_appid = fields.Char(string='Weixin APPID', required_if_provider='weixin')
     weixin_mch_id = fields.Char(string=u'微信支付商户号', required_if_provider='weixin')
     weixin_key = fields.Char(string=u'API密钥', required_if_provider='weixin')

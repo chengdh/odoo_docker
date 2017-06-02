@@ -16,9 +16,9 @@
         <div class="col-md-12" style="margin-bottom: 15px;">
           <t t-call="we_shop.snippet_img_gallery" />
         </div>
-        <div class="col-md-12" style="margin-bottom: 15px;">
-          <t t-call="we_shop.toolbox" />
-        </div>
+        <!-- <div class="col&#45;md&#45;12" style="margin&#45;bottom: 15px;"> -->
+        <!--   <t t&#45;call="we_shop.toolbox" /> -->
+        <!-- </div> -->
       </xpath>
     </template>
 
